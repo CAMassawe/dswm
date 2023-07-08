@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>swm - others</title>
+        <meta charset="uft-8">
+    </head>
+
+    <body>
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+            body {
+                margin: 0;
+                background-color: #9999ff;
+            }
+           
+            #left-side {
+                width: 100%;
+            }
+            #login, #signup {
+                width: 80%;
+                max-width: 400px;
+                margin: 10px auto;
+                background-color: white;
+                border-radius: 10px;
+            }
+            #login h5, #signup h5 {
+                text-align: center;
+                border-bottom: 1px solid #9999ff;
+            }
+            form input[type="text"], input[type="password"], input[type="email"] {
+                width: 80%;
+                margin: 0 0 10px 10%;
+                padding: 5px;
+                border-radius: 10px;
+                border: none;
+                background-color: #9999ff;
+                color: white;
+            }
+            form button {
+                width: 50%;
+                margin: 0 0 10px 25%;
+                padding: 5px;
+                border: none;
+                border-radius: 20px;
+                background-color: grey;
+                color: white;
+            }
+            #error-login, #error-register {
+                text-align: center;
+                color: red;
+            }
+            #signUp {
+                width: 30%;
+                margin: 10px auto;
+                background-color: transparent;
+            }
+            #signUp button {
+                width: 60%;
+                margin: 0 0 0 20%;
+                background-color: white;
+                border: none;
+                border-radius: 20px;
+                padding: 5px;
+            }
+            header h2 {
+                text-align: center;
+                color: white;
+            }
+        </style>
+
+        <header>
+            <h2>SMART WATER METER</h2>
+        </header>
+        <section id="left-side">
+            <div id="login">
+                <h5>Log In</h5>
+
+                <h6 id="error-login"></h6>
+                
+                <form id="login-form">
+                    <input type="email" name="email" placeholder="Write Email Here:"><br>
+                    <input type="password" name="password" placeholder="Write Password Here:"><br>
+                    <button type="submit" id="login-button">Log In</button>
+                </form>
+            </div>
+
+
+            
+            <div id="signup">
+                <h5>Register</h5>
+
+                <h6 id="error-register"></h6>
+                
+                <form id="register-form">
+                    <input type="text" name="firstname" placeholder="Write Firstname Here:" required><br>
+                    <input type="text" name="lastname" placeholder="Write Lastname Here:" required><br>
+                    <input type="email" name="email" placeholder="Write Email Here:" required><br>
+                    <input type="password" name="password" placeholder="Write Password Here:" required><br>
+                    <button type="submit" id="submit-button">Register</button>
+                </form>
+            </div>
+        </section>
+
+        <script>
+            var loginForm = document.getElementById('login-form');
+            loginForm.addEventListener('submit', login);
+
+            function login(e) {
+                e.preventDefault();
+
+                var formData = new FormData(loginForm);
+
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', 'login.php', true);
+
+                xhr.onload = function() {
+                    if (this.status == 200) {
+
+                        var output = this.responseText;
+
+                        if (output == "Logged") {
+                            window.location.href = "home.php";
+                        } else {
+                            document.getElementById('error-login').innerHTML = output;
+                        }
+                    }
+                }
+
+                xhr.send(formData);
+            }
+
+            var RegisterForm = document.getElementById('register-form');
+            RegisterForm.addEventListener('submit', register);
+
+            function register(e) {
+                e.preventDefault();
+
+                var formData = new FormData(RegisterForm);
+
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', 'signup.php', true);
+
+                xhr.onload = function() {
+                    if (this.status == 200) {
+
+                        var output = this.responseText;
+
+                        document.getElementById('error-register').innerHTML = output;
+                    }
+                }
+
+                xhr.send(formData);
+            }
+
+        </script>
+    </body>
+</html>
