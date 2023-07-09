@@ -10,8 +10,8 @@ set_error_handler('error');
 
 //calling server
 $servername = "localhost";
-$username = "dabe";
-$password = "daBEpassword123...!@#";
+$username = "chriss";
+$password = "chris0628329196";
 $mydbase = "swm";
 
 //starting connection with server 
