@@ -9,10 +9,10 @@ function error($errno, $errwo){
 set_error_handler('error');
 
 //calling server
-$servername = "localhost";
-$username = "dabe";
-$password = "daBEpassword123...!@#";
-$mydbase = "swm";
+$servername = "github";
+$username = "CAMassawe";
+$password = "*Chris0708";
+$mydbase = "dswm";
 
 //starting connection with server 
 $conn = new mysqli($servername, $username, $password, $mydbase);
